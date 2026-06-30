@@ -3,7 +3,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebas
 
 // Firestore
 import {
-  getFirestore
+  getFirestore,
+  doc,
+  setDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 // Firebase configuration
@@ -24,3 +26,18 @@ const db = getFirestore(app);
 
 console.log("✅ Firebase Connected Successfully!");
 console.log("✅ Firestore Connected Successfully!");
+// Write a test document to Firestore
+async function testFirestore() {
+  try {
+    await setDoc(doc(db, "test", "connection"), {
+      message: "Hello Firestore!",
+      time: new Date().toISOString()
+    });
+
+    console.log("✅ Test document written successfully!");
+  } catch (error) {
+    console.error("❌ Firestore write failed:", error);
+  }
+}
+
+testFirestore();
