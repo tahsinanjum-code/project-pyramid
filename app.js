@@ -2,11 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 
 // Firestore
-import {
-  getFirestore,
-  doc,
-  setDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -20,32 +16,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-// Initialize Firestore
 const db = getFirestore(app);
 
-console.log("✅ Firebase Connected Successfully!");
-console.log("✅ Firestore Connected Successfully!");
+console.log("✅ Firebase Connected");
+console.log("✅ Firestore Connected");
 
-// Test Firestore write
-async function testFirestore() {
-  console.log("Step 1 - Function started");
-
-  try {
-    console.log("Step 2 - About to write");
-
-    await setDoc(doc(db, "test", "connection"), {
-      message: "Hello Firestore!",
-      time: new Date().toISOString()
-    });
-
-    console.log("✅ Step 3 - Write successful");
-
-  } catch (error) {
-    console.error("❌ Step 4 - Error");
-    console.error(error);
-  }
-}
-
-// Run the test
-testFirestore();
+// Make Firestore available to the rest of the page
+window.db = db;
