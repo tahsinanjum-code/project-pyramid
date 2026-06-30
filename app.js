@@ -26,27 +26,12 @@ const db = getFirestore(app);
 
 console.log("✅ Firebase Connected Successfully!");
 console.log("✅ Firestore Connected Successfully!");
-// Write a test document to Firestore
+
+// Test Firestore write
 async function testFirestore() {
-  try {
-    await setDoc(doc(db, "test", "connection"), {
-      message: "Hello Firestore!",
-      time: new Date().toISOString()
-    });
-
-    console.log("✅ Test document written successfully!");
-  } catch (error) {
-    console.error("❌ Firestore write failed:", error);
-  }
-}
-
-// Write a test document to Firestore
-async function testFirestore() {
-
   console.log("Step 1 - Function started");
 
   try {
-
     console.log("Step 2 - About to write");
 
     await setDoc(doc(db, "test", "connection"), {
@@ -54,15 +39,13 @@ async function testFirestore() {
       time: new Date().toISOString()
     });
 
-    console.log("Step 3 - Write successful");
+    console.log("✅ Step 3 - Write successful");
 
   } catch (error) {
-
-    console.error("Step 4 - Error");
+    console.error("❌ Step 4 - Error");
     console.error(error);
-
   }
-
 }
 
+// Run the test
 testFirestore();
